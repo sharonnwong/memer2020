@@ -3,6 +3,7 @@ import './App.css';
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import {LinearProgress} from '@material-ui/core'
+import {Search} from '@material-ui/icons'
 
 
 function App() {
@@ -43,13 +44,13 @@ function App() {
           />
           <Button variant="contained" 
             color="primary"
-            onClick={getMemes} /*identical to {()=>getMemes()} */
-          >
+            onClick={getMemes} /*identical to {()=>getMemes()} */>
+            <Search />
             Search
           </Button>
         </div>
-        {loading && <LinearProgress/>} 
       </header>
+      {loading && <LinearProgress />} 
 
       <div className="memes">
         {memes.map((meme,i)=> <Meme key={i} {...meme}/> /*function Meme, add every single thing to the memes list */)}
@@ -59,8 +60,8 @@ function App() {
 }
 
 function Meme({title,images}){
-  return <div className="meme">
-    <img src={images.fixed_height.url} alt="meme"/>
+  return <div className="meme" onClick={()=>window.open(images.fixed_height.url,'_blank')}>
+    <img src={images.fixed_height.url} alt="meme" height="200"/>
     <div className="meme-title">{title}</div>
   </div>
 }
